@@ -2,7 +2,7 @@ trigger Competitions on Competition__c (before insert) {
     
     if(CompetitionController.runOnce == false) return;
     CompetitionController.runOnce = false;
-    Integer passed = 0;
+
     Competition__c newComp = Trigger.new[0];
     Double score = newComp.Score__c; 
     
