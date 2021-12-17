@@ -1,0 +1,22 @@
+<aura:component controller="CompetitionController" implements="flexipage:availableForAllPageTypes">
+    <lightning:card title="New Competition Score" iconName="standard:account" footer="please add the new Score">   
+        <div class="slds-p-horizontal_large">
+        <lightning:input name="Name" label="Name" aura:id="collect"/>
+        <lightning:input type="number" name="Score__c" required="true" label="Score" max="100" aura:id="collect"/>
+        <div>
+            <lightning:button label="Submit Score" onclick="{!c.submit}" class="slds-m-top_small slds-align_absolute-center"></lightning:button>
+        </div>
+    </div>
+    </lightning:card>
+</aura:component>	
+
+<!--lightning:recordEditForm aura:id="recordEditForm"
+                           objectApiName="Competition__c" 
+                           onsubmit="{!c.handleSubmit}"
+                            onsuccess="{!c.handleSuccess}"
+                            onerror="{!c.handleError}">
+                <lightning:messages />
+                <lightning:inputField fieldName="Name" />
+                <lightning:inputField fieldName="Score__c" />
+                <lightning:button class="slds-m-top_small slds-align_absolute-center" type="submit" label="Create new" />
+            </lightning:recordEditForm-->
