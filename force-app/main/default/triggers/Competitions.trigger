@@ -1,5 +1,5 @@
 trigger Competitions on Competition__c (before insert) {
-    
+    if(trigger.isInsert){
     if(CompetitionController.runOnce == false) return;
     CompetitionController.runOnce = false;
     List<Competition__c> toUpdate = new List<Competition__c>();
@@ -26,12 +26,10 @@ trigger Competitions on Competition__c (before insert) {
         if( (score > previousComp[i].Score__c) && ( newRankSet == false) ){
             newComp.Rank__c = previousComp[i].Rank__c;
             newRankSet = true;
-            System.debug('11newComp.Rank__c ' + newComp.Rank__c);
         }
         if(newRankSet){
             previousComp[i].Rank__c = previousComp[i].Rank__c + 1;
             toUpdate.add(previousComp[i]);
-            System.debug('22newComp.Rank__c ' + newComp.Rank__c);
         }
     }
     if(!newRankSet)
