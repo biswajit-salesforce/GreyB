@@ -33,14 +33,23 @@
                 message["message"] = 'Failed to save the record';
                 console.log(JSON.stringify(response.getError()[0].message));
             }
+            if(status === 'SUCCESS'){
+                component.set("v.newRecord", false);
+            }
 
             var toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams(message);
             toastEvent.fire();
         });
         $A.enqueueAction(action);
+    },
+
+    newScore : function(component, event, helper) {
+        component.set("v.newRecord", true);
     }
 })
+
+    
 
 /**
  * ({

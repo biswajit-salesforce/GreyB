@@ -1,12 +1,28 @@
 <aura:component controller="CompetitionController" implements="flexipage:availableForAllPageTypes">
-    <lightning:card title="New Competition Score" iconName="standard:account" footer="please add the new Score">   
-        <div class="slds-p-horizontal_large">
-        <lightning:input name="Name" label="Name" aura:id="collect"/>
-        <lightning:input type="number" name="Score__c" required="true" label="Score" max="100" aura:id="collect"/>
-        <div>
-            <lightning:button label="Submit Score" onclick="{!c.submit}" class="slds-m-top_small slds-align_absolute-center"></lightning:button>
-        </div>
-    </div>
+    <aura:attribute name="newRecord" type="Boolean" default="false" />
+    <lightning:card title="New Competition Score" iconName="standard:account" footer="{! v.newRecord ? '' : 'Click New Score to add a new Score'}">  
+        <aura:set attribute="actions" >
+            <aura:if isTrue="{! !v.newRecord}">
+            <lightning:button label="New Score" onclick="{!c.newScore}" 
+                variant="brand"></lightning:button>
+            </aura:if>
+        </aura:set>
+        <aura:if isTrue="{! v.newRecord}">
+            <div class="slds-p-horizontal_large">
+            <lightning:input name="Name" label="Name" 
+                            fieldLevelHelp="Name of the Student"
+                            aura:id="collect"/>
+            <lightning:input type="number" name="Score__c" required="true" label="Score" 
+                                max="100" min="0" 
+                                messageWhenRangeOverflow="Please enter a value between 0 to 100"
+                                messageWhenRangeUnderflow="Please enter a value between 0 to 100"
+                                fieldLevelHelp="Marks obtained"
+                                aura:id="collect"/>
+                <lightning:button label="Submit Score" onclick="{!c.submit}" 
+                    class="slds-m-top_small slds-align_absolute-center" 
+                    variant="brand"></lightning:button>
+            </div>
+        </aura:if>
     </lightning:card>
 </aura:component>	
 
