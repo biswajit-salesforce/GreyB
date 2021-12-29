@@ -1,4 +1,5 @@
 ({
+    /*
     submit : function(component, event, helper) {
         var arr = component.find("collect");
 
@@ -46,7 +47,35 @@
 
     newScore : function(component, event, helper) {
         component.set("v.newRecord", true);
+    },
+    */
+
+    handleSubmit : function(component, event, helper) {
+        //component.find('recordEditForm').submit();
+    },
+
+    handleSuccess: function(component, event, helper) {
+        var message = {
+            "type": 'success',
+            "title": 'Success!',
+            "message": "The record has been updated successfully."
+        };
+        var toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams(message);
+            toastEvent.fire();
+    },
+
+    handleError: function(component, event, helper) {
+        var message = {
+            "type": 'error',
+            "title":'Error!',
+            "message": "Error occurred"
+        };
+        var toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams(message);
+            toastEvent.fire();
     }
+
 })
 
     

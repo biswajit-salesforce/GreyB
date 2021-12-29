@@ -1,7 +1,7 @@
 <aura:component controller="CompetitionController" implements="flexipage:availableForAllPageTypes">
     <aura:attribute name="newRecord" type="Boolean" default="false" />
     <lightning:card title="New Competition Score" iconName="standard:account" footer="{! v.newRecord ? '' : 'Click New Score to add a new Score'}">  
-        <aura:set attribute="actions" >
+        <!--aura:set attribute="actions" >
             <aura:if isTrue="{! !v.newRecord}">
             <lightning:button label="New Score" onclick="{!c.newScore}" 
                 variant="brand"></lightning:button>
@@ -22,17 +22,22 @@
                     class="slds-m-top_small slds-align_absolute-center" 
                     variant="brand"></lightning:button>
             </div>
-        </aura:if>
-    </lightning:card>
-</aura:component>	
-
-<!--lightning:recordEditForm aura:id="recordEditForm"
+        </aura:if-->
+        <lightning:recordEditForm aura:id="recordEditForm"
                            objectApiName="Competition__c" 
                            onsubmit="{!c.handleSubmit}"
                             onsuccess="{!c.handleSuccess}"
                             onerror="{!c.handleError}">
                 <lightning:messages />
-                <lightning:inputField fieldName="Name" />
-                <lightning:inputField fieldName="Score__c" />
-                <lightning:button class="slds-m-top_small slds-align_absolute-center" type="submit" label="Create new" />
-            </lightning:recordEditForm-->
+            <div class="slds-p-horizontal_x-large">
+                <lightning:inputField fieldName="Name"/>
+                <lightning:inputField fieldName="Score__c"/>
+                <lightning:button class="slds-m-top_small slds-align_absolute-center" 
+                type="submit" 
+                label="New score" 
+                variant="brand"/>
+            </div>
+            </lightning:recordEditForm>
+    </lightning:card>
+
+        </aura:component>	
